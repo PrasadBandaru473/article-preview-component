@@ -21,46 +21,50 @@ let pinterestDes = document.querySelector(".pinterest-desktop").parentNode;
 let shareMenuHover = false;
 let shareButtonTimeOut;
 let shareMenuTimeOut;
+
 window.onresize = () => {
   location.reload();
 };
-shareButton.addEventListener("mouseenter", () => {
-  clearTimeout(shareButtonTimeOut);
-  clearTimeout(shareMenuTimeOut);
-  window.offsetHeight;
-  if (windowWidth > 600) {
+
+if (windowWidth > 600) {
+  shareButton.addEventListener("mouseenter", () => {
+    clearTimeout(shareButtonTimeOut);
+    clearTimeout(shareMenuTimeOut);
+    window.offsetHeight;
     forLaptop();
-  } else {
+    siteDetails();
+  });
+
+  shareButton.addEventListener("mouseleave", () => {
+    shareButtonTimeOut = setTimeout(() => {
+      if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
+        shareMenu.classList.toggle("hide");
+      }
+    }, 1000);
+  });
+
+  shareMenu.addEventListener("mouseenter", () => {
+    shareMenuHover = true;
+  });
+
+  shareMenu.addEventListener("mouseleave", () => {
+    shareMenuHover = false;
+    shareMenuTimeOut = setTimeout(() => {
+      if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
+        shareMenu.classList.toggle("hide");
+      }
+    }, 1000);
+  });
+} else {
+  shareButton.addEventListener("click", () => {
     forMobile();
-  }
-  siteDetails();
-});
-
-shareButton.addEventListener("mouseleave", () => {
-  shareButtonTimeOut = setTimeout(() => {
-    if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
-      shareMenu.classList.toggle("hide");
-    }
-  }, 1000);
-});
-
-shareMenu.addEventListener("mouseenter", () => {
-  shareMenuHover = true;
-});
-
-shareMenu.addEventListener("mouseleave", () => {
-  shareMenuHover = false;
-  shareMenuTimeOut = setTimeout(() => {
-    if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
-      shareMenu.classList.toggle("hide");
-    }
-  }, 1000);
-});
-
-mobileShareButton.addEventListener("click", () => {
-  mobileShareMenu.style.display = "none";
-  shareButton.classList.toggle("hide");
-});
+    siteDetails();
+    mobileShareButton.addEventListener("click", () => {
+      mobileShareMenu.style.display = "none";
+      shareButton.classList.toggle("hide");
+    });
+  });
+}
 
 function forLaptop() {
   if (shareMenu.classList.contains("hide")) {
