@@ -61,6 +61,7 @@ if (windowWidth > 600) {
     siteDetails();
     mobileShareButton.addEventListener("click", () => {
       mobileShareMenu.style.display = "none";
+      if(shareButton.classList.contains("hide"))
       shareButton.classList.toggle("hide");
     });
   });
