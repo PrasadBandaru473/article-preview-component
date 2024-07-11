@@ -18,10 +18,15 @@ let pinterest = document.querySelector(".pinterest").parentNode;
 let facebookDes = document.querySelector(".facebook-desktop").parentNode;
 let twitterDes = document.querySelector(".twitter-desktop").parentNode;
 let pinterestDes = document.querySelector(".pinterest-desktop").parentNode;
+let shareMenuHover = false;
+let shareButtonTimeOut;
+let shareMenuTimeOut;
 window.onresize = () => {
   location.reload();
 };
-shareButton.addEventListener("click", () => {
+shareButton.addEventListener("mouseenter", () => {
+  clearTimeout(shareButtonTimeOut);
+  clearTimeout(shareMenuTimeOut);
   window.offsetHeight;
   if (windowWidth > 600) {
     forLaptop();
@@ -31,13 +36,36 @@ shareButton.addEventListener("click", () => {
   siteDetails();
 });
 
+shareButton.addEventListener("mouseleave", () => {
+  shareButtonTimeOut = setTimeout(() => {
+    if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
+      shareMenu.classList.toggle("hide");
+    }
+  }, 1000);
+});
+
+shareMenu.addEventListener("mouseenter", () => {
+  shareMenuHover = true;
+});
+
+shareMenu.addEventListener("mouseleave", () => {
+  shareMenuHover = false;
+  shareMenuTimeOut = setTimeout(() => {
+    if (!shareMenu.classList.contains("hide") && !shareMenuHover) {
+      shareMenu.classList.toggle("hide");
+    }
+  }, 1000);
+});
+
 mobileShareButton.addEventListener("click", () => {
   mobileShareMenu.style.display = "none";
   shareButton.classList.toggle("hide");
 });
 
 function forLaptop() {
-  shareMenu.classList.toggle("hide");
+  if (shareMenu.classList.contains("hide")) {
+    shareMenu.classList.toggle("hide");
+  }
   shareMenu.offsetHeight;
   let positionbtn = shareButton.getBoundingClientRect();
   shareMenu.style.left = positionbtn.left + "px";
