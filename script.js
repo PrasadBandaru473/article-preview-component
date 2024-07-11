@@ -18,72 +18,73 @@ let pinterest = document.querySelector(".pinterest").parentNode;
 let facebookDes = document.querySelector(".facebook-desktop").parentNode;
 let twitterDes = document.querySelector(".twitter-desktop").parentNode;
 let pinterestDes = document.querySelector(".pinterest-desktop").parentNode;
-window.onresize = () => {location.reload();}
-shareButton.addEventListener('click', () => {
-    window.offsetHeight;
-    if(windowWidth > 600) {
-        forLaptop();
-    }else {
-        forMobile();
-    }
-    siteDetails();
+window.onresize = () => {
+  location.reload();
+};
+shareButton.addEventListener("click", () => {
+  window.offsetHeight;
+  if (windowWidth > 600) {
+    forLaptop();
+  } else {
+    forMobile();
+  }
+  siteDetails();
 });
 
-mobileShareButton.addEventListener('click', () => {
-    mobileShareMenu.style.display = "none";
-    shareButton.classList.toggle("hide");
+mobileShareButton.addEventListener("click", () => {
+  mobileShareMenu.style.display = "none";
+  shareButton.classList.toggle("hide");
 });
 
-function forLaptop () {
-    shareMenu.classList.toggle("hide");
-    shareMenu.offsetHeight;
-    let positionbtn = shareButton.getBoundingClientRect();
-    shareMenu.style.left = positionbtn.left + "px";
-    shareMenu.style.right = positionbtn.right + "px";
-    shareMenu.style.top = positionbtn.top - 40 + "px";
-    shareMenu.style.bottom = positionbtn.bottom + "px";
-    shareMenu.style.width = positionbtn.width + "px";
-    shareMenu.style.height = positionbtn.height + "px";
+function forLaptop() {
+  shareMenu.classList.toggle("hide");
+  shareMenu.offsetHeight;
+  let positionbtn = shareButton.getBoundingClientRect();
+  shareMenu.style.left = positionbtn.left + "px";
+  shareMenu.style.right = positionbtn.right + "px";
+  shareMenu.style.top = positionbtn.top - 40 + "px";
+  shareMenu.style.bottom = positionbtn.bottom + "px";
+  shareMenu.style.width = positionbtn.width + "px";
+  shareMenu.style.height = positionbtn.height + "px";
 }
 
-function forMobile () {
-    mobileShareMenu.style.display = "flex";
-    shareButton.classList.toggle("hide");
+function forMobile() {
+  mobileShareMenu.style.display = "flex";
+  shareButton.classList.toggle("hide");
 }
 
-function siteDetails () {
-    let postUrl = encodeURI(document.location.href);
-    let postTitle = encodeURI("Have a look at my business card from here");
-    let postImg = encodeURI("imagesdesktop-design.jpg");
+function siteDetails() {
+  let postUrl = encodeURI(document.location.href);
+  let postTitle = encodeURI("Have a look at my business card from here");
+  let postImg = encodeURI("imagesdesktop-design.jpg");
 
-    facebook.setAttribute(
-      "href",
-      `https://www.facebook.com/sharer.php?u=${postUrl}`
-    );
+  facebook.setAttribute(
+    "href",
+    `https://www.facebook.com/sharer.php?u=${postUrl}`
+  );
 
-    facebookDes.setAttribute(
-      "href",
-      `https://www.facebook.com/sharer.php?u=${postUrl}`
-    );
+  facebookDes.setAttribute(
+    "href",
+    `https://www.facebook.com/sharer.php?u=${postUrl}`
+  );
 
-    twitter.setAttribute(
-      "href",
-      `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
-    );
+  twitter.setAttribute(
+    "href",
+    `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+  );
 
-    twitterDes.setAttribute(
-      "href",
-      `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
-    );
+  twitterDes.setAttribute(
+    "href",
+    `https://twitter.com/share?url=${postUrl}&text=${postTitle}`
+  );
 
-    pinterest.setAttribute(
-      "href",
-      `https://pinterest.com/pin/create/bookmarklet/?media=${postImg}&url=${postUrl}&description=${postTitle}`
-    );
+  pinterest.setAttribute(
+    "href",
+    `https://pinterest.com/pin/create/bookmarklet/?url=${postUrl}&description=${postTitle}`
+  );
 
-    pinterestDes.setAttribute(
-      "href",
-      `https://pinterest.com/pin/create/bookmarklet/?media=${postImg}&url=${postUrl}&description=${postTitle}`
-    );
+  pinterestDes.setAttribute(
+    "href",
+    `https://pinterest.com/pin/create/bookmarklet/?url=${postUrl}&description=${postTitle}`
+  );
 }
-
