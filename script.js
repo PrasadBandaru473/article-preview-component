@@ -21,9 +21,19 @@ let pinterestDes = document.querySelector(".pinterest-desktop").parentNode;
 let shareMenuHover = false;
 let shareButtonTimeOut;
 let shareMenuTimeOut;
+let isReloading = false;
+function reloadPage() {
+  if(!isReloading) {
+    isReloading = true;
+    location.reload();
+    setTimeout(() => {
+      isReloading = false;
+    }, 500);
+  }
+}
 
 window.onresize = () => {
-  location.reload();
+  reloadPage();
 };
 
 if (windowWidth > 600) {
