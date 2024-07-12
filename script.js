@@ -23,7 +23,10 @@ let shareButtonTimeOut;
 let shareMenuTimeOut;
 
 window.onresize = () => {
-  location.reload();
+  setTimeout(() => {
+    location.reload();
+    console.log("reloaded");
+  },500)
 };
 
 if (windowWidth > 600) {
